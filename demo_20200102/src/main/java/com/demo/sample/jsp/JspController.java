@@ -9,6 +9,6 @@ public class JspController {
 
     @RequestMapping(value="/")      // localhost
     public String root() {
-        return "index";          	// 실제 호출될 /WEB-INF/jsp/viewtest.jsp        
+        return "index";          	// 실제 호출될 /WEB-INF/view/index.jsp        
     }
 }
