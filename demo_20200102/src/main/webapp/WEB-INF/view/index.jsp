@@ -31,7 +31,7 @@
 		<table border=1 style="width:100% height:750px bordercolor:black">
 			<tr> 
 				<td colspan=2 style="width:100%; height:10px;">
-					<div style="float:right;"><a href="login.jsp">로그인</a><a href="#">회원가입</a> </div>
+					<div style="float:right;"><a href="login">로그인</a><a href="#">회원가입</a> </div>
 				</td> 
 			</tr> 
 			<tr> 
