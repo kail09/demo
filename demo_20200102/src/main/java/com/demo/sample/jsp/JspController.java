@@ -11,4 +11,10 @@ public class JspController {
     public String root() {
         return "index";          	// 실제 호출될 /WEB-INF/view/index.jsp        
     }
+    
+    @RequestMapping(value="/") 
+    public String loginByGet(){ 
+    	return "login"; 
+    }
+
 }

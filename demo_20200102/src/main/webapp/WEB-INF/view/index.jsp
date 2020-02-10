@@ -30,11 +30,17 @@
 	<div align="center">
 		<table border=1 style="width:100% height:750px bordercolor:black">
 			<tr> 
-				<td colspan=2 style="width:100% height:150px"> <img src="resources/img/cityImg.jpg" width="100%" height="150px"> 
+				<td colspan=2 style="width:100%; height:10px;">
+					<div style="float:right;"><a href="login.jsp">로그인</a><a href="#">회원가입</a> </div>
+				</td> 
+			</tr> 
+			<tr> 
+				<td colspan=2 style="width:100% height:150px"> <img src="resources/img/cityphoto.jpg" width="100%" height="150px"> 
 				</td> 
 			</tr> 
 			<tr> 
 				<td width=200 height=600 align=center valign=top> 
+					
 					<p><br></p>
 				</td> 
 				<td width=800 height=600 align=center valign=top> 
