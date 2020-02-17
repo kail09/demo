@@ -14,7 +14,7 @@ public class JspController {
     
     @RequestMapping("/login") 
     public @ResponseBody String login(){ 
-    	return "login"; 
+    	return "forward:/chk_login"; 
     }
-
+    // 로그인화면 작업 (security 이용고민)
 }

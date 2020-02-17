@@ -11,7 +11,7 @@
 		<table style="width:200px"> 
 			<tr> 
 				<td width=30% align=right>
-					ID
+					ID chk
 				</td> 
 				<td width=70% align=left> 
 					<input type=text name=id size=15> 
