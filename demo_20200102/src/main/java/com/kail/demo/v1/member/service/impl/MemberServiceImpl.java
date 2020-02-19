@@ -1,7 +1,9 @@
 package com.kail.demo.v1.member.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kail.demo.v1.member.dao.MemberDao;
 import com.kail.demo.v1.member.service.MemberService;
 
 import java.sql.Connection;
@@ -10,11 +12,15 @@ import java.sql.SQLException;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-
+	
+	@Autowired
+	MemberDao memberDao;
+	
 	@Override
 	public void test() {
 		System.out.println("run chk ");
-		
+		String a = memberDao.test();
+		System.out.print("mapper ok"+a);
 	}
 	
 	@Override
