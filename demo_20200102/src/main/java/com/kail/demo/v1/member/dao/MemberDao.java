@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MemberDao {
-	@Select("select phone from demoDb.member where num = 1")
+//	@Select("select phone from demoDb.member where num = 2")
 	String test();
 }

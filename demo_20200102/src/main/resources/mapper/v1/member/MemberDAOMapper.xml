@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kail.demo.v1.member.dao.MemberDao">
 
-	<select id="viewMember" parameterType="MemberVO" resultType="MemberVO">
-		SELECT
-			num
-			,userNm
-			,phone
-		FROM demoDb.member
-		WHERE userNm = "kafa"
-    </select>
 	
 	<select id="test" resultType="java.lang.String">
 		SELECT NOW()
