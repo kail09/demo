@@ -3,8 +3,10 @@
 <mapper namespace="com.kail.demo.v1.member.dao.MemberDao">
 
 	
-	<select id="test" resultType="java.lang.String">
-		SELECT NOW()
+	<select id="test" resultType="java.lang.String" parameterType="MemberModel">
+		SELECT phone 
+		FROM demoDb.member 
+		WHERE num = #{num}
 	</select>
 
 </mapper>

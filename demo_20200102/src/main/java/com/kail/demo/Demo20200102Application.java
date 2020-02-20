@@ -24,6 +24,7 @@ public class Demo20200102Application {
 	public  SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
+		sessionFactory.setTypeAliasesPackage("com.kail.demo");
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/**/*.xml"));
 		return sessionFactory.getObject();
