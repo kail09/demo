@@ -8,5 +8,37 @@
 		FROM demoDb.member 
 		WHERE num = #{num}
 	</select>
-
+	
+	<insert id="insertUserInfo" parameterType="MemberModel">
+		INSERT INTO demoDb.TBL_USER (
+			USER_ID
+			, USER_PW
+			, USER_NAME
+			, USER_EMAIL
+		) VALUES (
+			#{userId}
+			, #{userPw}
+			, #{userName}
+			, #{userEmail}
+		)
+	</insert>
+	
+	<select id="countUserId" parameterType="String" resultType="long">
+		SELECT
+			COUNT(*)
+		FROM demoDb.TBL_USER TU
+		WHERE TU.USER_ID = #{userId}
+	</select>
+	
+	<select id="loginUserInfo" parameterType="MemberModel" resultType="String">
+		SELECT
+			USER_NAME
+		FROM demoDb.TBL_USER TU
+		WHERE 1=1
+		AND TU.USER_ID = #{userId}
+		AND TU.USER_PW = #{userPw}
+	</select>
+	
+	
+	
 </mapper>

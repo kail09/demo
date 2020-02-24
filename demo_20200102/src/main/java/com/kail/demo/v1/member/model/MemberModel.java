@@ -9,4 +9,24 @@ import lombok.Data;
 public class MemberModel {
 	int num;
 	String phone;
+	
+	// member test
+	private String userId;
+	
+	private String userPw;
+	
+	private String userName;
+	
+	private String userEmail;
+	
+	private String userJoinDate;
+	
+	private String userLoginDate;
+	
+	private String userSignature;
+	
+	private String userImg;
+	
+	private int userPoint;
+	
 }

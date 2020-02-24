@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import com.kail.demo.v1.member.dao.MemberDao;
 import com.kail.demo.v1.member.model.MemberModel;
 import com.kail.demo.v1.member.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -18,6 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;
 	
 	@Override
+//	@Transactional(propagation = Propagation.NESTED)
 	public void test() {
 		MemberModel memberModel = new MemberModel();
 		memberModel.setNum(2);
@@ -25,32 +31,53 @@ public class MemberServiceImpl implements MemberService {
 		String a = memberDao.test(memberModel);
 		System.out.print("mapper ok"+a);
 	}
+
+	@Override
+	public void insertUserInfo(MemberModel memberModel) throws Exception {
+		
+		// 기존 userId 조회
+		
+		long cntUserId = memberDao.countUserId(memberModel.getUserId());
+		if (cntUserId > 0) {
+			log.error("[ERROR-100] Exception : "+ "Duplicate userId");
+			throw new Exception();
+		}
+		
+		try {
+			memberDao.insertUserInfo(memberModel);
+		} catch (Exception e) {
+			log.error("[ERROR-101] Exception : " + e.getMessage());
+		}
+	}
+	
+	@Override
+	public String loginUserInfo(MemberModel memberModel, HttpSession session) throws Exception {
+		
+		// 기존 userId 조회
+		try {
+			memberDao.loginUserInfo(memberModel);
+			session.setAttribute("userId", memberModel.getUserId());
+			session.setAttribute("userId", memberModel.getUserName());
+		} catch (Exception e) {
+			log.error("[ERROR-200] Exception : " + e.getMessage());
+		}
+		return memberModel.getUserName();
+	}
 	
 	@Override
 	public void mysqlTest() {
 		
-        // Connection 객체를 자동완성으로 import할 때는 com.mysql.connection이 아닌
-        // java 표준인 java.sql.Connection 클래스를 import해야 한다.
-        Connection conn = null;
+		Connection conn = null;
 
-        try{
-            // 1. 드라이버 로딩
-            // 드라이버 인터페이스를 구현한 클래스를 로딩
-            // mysql, oracle 등 각 벤더사 마다 클래스 이름이 다르다.
-            // mysql은 "com.mysql.jdbc.Driver"이며, 이는 외우는 것이 아니라 구글링하면 된다.
-            // 참고로 이전에 연동했던 jar 파일을 보면 com.mysql.jdbc 패키지에 Driver 라는 클래스가 있다.
-            Class.forName("com.mysql.jdbc.Driver");
+		try{
+			// 1) 드라이버 로딩
+			Class.forName("com.mysql.jdbc.Driver");
 
-            // 2. 연결하기
-            // 드라이버 매니저에게 Connection 객체를 달라고 요청한다.
-            // Connection을 얻기 위해 필요한 url 역시, 벤더사마다 다르다.
-            // mysql은 "jdbc:mysql://localhost/사용할db이름" 이다.
-            String url = "jdbc:mysql://localhost/demoDb";		
+			// 2) 연결하기
+			String url = "jdbc:mysql://localhost/demoDb";		
 
-            // @param  getConnection(url, userName, password);
-            // @return Connection
-            conn = DriverManager.getConnection(url, "root", "qwe123!@#");
-            System.out.println("연결 성공");
+			conn = DriverManager.getConnection(url, "root", "qwe123!@#");
+			System.out.println("연결 성공");
 
         }
         catch(ClassNotFoundException e){

@@ -1,8 +1,12 @@
 package com.kail.demo;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import ch.qos.logback.classic.pattern.Util;
  
 @Controller
 public class JspController {
@@ -14,22 +18,32 @@ public class JspController {
 		// 로그인 정보 여부 확인 
 		// 없을 경우 로그인 화면으로 리다이렉트 
 		if (result) {
-			return "redirect:/login_Admin";
+			return "forward:/login_Admin";
 		} else {
-			return "redirect:/index_Admin";
+			return "forward:/index_Admin";
 		}
 	}
 	
 	@RequestMapping("/login_Admin") 
-	public String login(){ 
+	public String login(HttpSession session){ 
+		
+		if (!"".equals(session.getAttribute("userId"))) {
+			result = false;
+		}
+		
 		if (result) {
 			return "/login_Admin";
 		} else {
-			return "redirect:/index_Admin";
+			return "forward:/index_Admin";
 		}	}
 	
 	@RequestMapping("/index_Admin") 
-	public String index(){ 
+	public String index(HttpSession session){ 
+		
+		if (!"".equals(session.getAttribute("userId"))) {
+			result = false;
+		}
+		
 		if (result) {
 			return "redirect:/login_Admin";
 		} else {
