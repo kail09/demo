@@ -33,11 +33,16 @@ public class MemberController {
 		String result = "";
 		
 		try {
-			memberService.loginUserInfo(memberModel, session);
-			result = "forward:/index_Admin";
+			String userName = memberService.loginUserInfo(memberModel, session);
+			if (userName != "") {
+				result = "forward:/index_Admin";
+				result = userName;
+			} else {
+				result = "not select";
+			}
 		} catch (Exception e) {
 			result = "failure";
-		}
+		};
 		
 		return result;
 	}

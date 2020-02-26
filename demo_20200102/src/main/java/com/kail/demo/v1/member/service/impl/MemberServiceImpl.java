@@ -55,9 +55,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		// 기존 userId 조회
 		try {
-			memberDao.loginUserInfo(memberModel);
+			String userName = memberDao.loginUserInfo(memberModel);
 			session.setAttribute("userId", memberModel.getUserId());
-			session.setAttribute("userId", memberModel.getUserName());
+			session.setAttribute("userName", userName);
+			memberModel.setUserName(userName);
 		} catch (Exception e) {
 			log.error("[ERROR-200] Exception : " + e.getMessage());
 		}
@@ -96,5 +97,14 @@ public class MemberServiceImpl implements MemberService {
                 e.printStackTrace();
             }
         }
+	}
+	
+	@Override
+	public String loginUserInfo(MemberModel memberModel) {
+		String userName = memberDao.loginUserInfo(memberModel);
+		System.out.println("chk memberserviceimpl data :  "+ memberModel.getUserId());
+		System.out.println("chk memberserviceimpl data userNm :  "+ userName);
+		log.debug("data : " + memberModel.getUserId() ); 
+		return userName;
 	}
 }

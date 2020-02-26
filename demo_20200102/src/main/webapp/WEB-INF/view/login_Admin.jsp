@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¼îÇÎ</title>
+<meta charset="UTF-8">
+<title>ì‡¼í•‘</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btn_login").click(function(){
@@ -12,20 +13,21 @@
 			var userPw = $("#userPw").val();
 			
 			if ( userId == "" ) {
-				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 				$("#userId").focus();
 				return;
 			}
+			console.log("user id : "+ userId);
 			
 			if ( userPw == "" ) {
-				alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 				$("#userPw").focus();
 				return;
 			}
 			
-			// Æû ³»ºÎÀÇ µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÒ ÁÖ¼Ò
-			document.form1.action = "${path}/member/login"
-			// Á¦Ãâ
+			// í¼ ë‚´ë¶€ì˜ ë°ì´í„°ë¥¼ ì „ì†¡í•  ì£¼ì†Œ
+			document.form1.action = "${path}/login_Admin/login"
+			// ì œì¶œ
 			document.form1.submit();
 			
 		});
@@ -33,7 +35,7 @@
 </script>
 </head>
 <body>
-<form name="form1" method="post">
+<form name="form1" method="post" >
 	<div align="center">
 		<table style="width:200px"> 
 			<tr> 
@@ -41,7 +43,7 @@
 					ID
 				</td> 
 				<td width=70% align=left> 
-					<input type=text name=id id="userId" size=15> 
+					<input type=text name=userId id="userId" size=15> 
 				</td> 
 			</tr> 
 			<tr> 
@@ -49,12 +51,12 @@
 					Password
 				</td> 
 				<td width=70% align=left> 
-					<input type=password name=pwd id="userPw" size=15> 
+					<input type=password name=userPw id="userPw" size=15> 
 				</td> 
 			</tr> 
 			<tr> 
 				<td align=right colspan=2> 
-					<button type=button id="btn_login">·Î±×ÀÎ</button>
+					<button type=button id="btn_login">ë¡œê·¸ì¸</button>
 				</td>
 			</tr> 
 		</table> 

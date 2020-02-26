@@ -13,5 +13,7 @@ public interface MemberService {
 	void insertUserInfo(MemberModel memberModel) throws Exception;
 
 	String loginUserInfo(MemberModel memberModel, HttpSession session) throws Exception;
-	
+
+	String loginUserInfo(MemberModel memberModel);
+
 }

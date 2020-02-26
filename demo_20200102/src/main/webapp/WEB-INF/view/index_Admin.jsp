@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <% 
 	String mode=request.getParameter("mode"); 
 	String jsp=""; 
@@ -24,24 +24,24 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>¼îÇÎ</title>
+<title>ì‡¼í•‘</title>
 </head>
 <body>
 	<div align="center">
 		<table border=1 style="width:100% height:750px bordercolor:black">
 			<tr> 
 				<td colspan=2 style="width:100%; height:10px;">
-					<div style="float:right;"><a href="login">·Î±×ÀÎ</a><a href="#">È¸¿ø°¡ÀÔ</a> </div>
+					<div style="float:right;"><a href="login">ë¡œê·¸ì¸</a><a href="#">íšŒì›ê°€ìž…</a> </div>
 				</td> 
 			</tr> 
 			<tr> 
-				<td colspan=2 style="width:100% height:150px"> <img src="resources/img/cityphoto.jpg" width="100%" height="150px"> 
+				<td colspan=2 style="width:100% height:150px"> <img src="/resources/img/cityphoto.jpg" width="100%" height="150px"> 
 				</td> 
 			</tr> 
 			<tr> 
 				<td width=200 height=600 align=center valign=top> 
 					
-					<p><br></p>
+					<p><br>${member.userName} ìž…ë‹ˆë‹¤.</p>
 				</td> 
 				<td width=800 height=600 align=center valign=top> 
 				</td> 

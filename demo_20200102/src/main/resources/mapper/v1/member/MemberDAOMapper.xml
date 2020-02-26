@@ -30,9 +30,9 @@
 		WHERE TU.USER_ID = #{userId}
 	</select>
 	
-	<select id="loginUserInfo" parameterType="MemberModel" resultType="String">
+	<select id="loginUserInfo" parameterType="MemberModel" resultType="java.lang.String">
 		SELECT
-			USER_NAME
+			TU.USER_NAME
 		FROM demoDb.TBL_USER TU
 		WHERE 1=1
 		AND TU.USER_ID = #{userId}
