@@ -17,13 +17,26 @@
 				$("#userId").focus();
 				return;
 			}
-			console.log("user id : "+ userId);
 			
 			if ( userPw == "" ) {
 				alert("비밀번호를 입력하세요.");
 				$("#userPw").focus();
 				return;
 			}
+			
+			/*
+			$.ajax({
+				url : "test.jsp",
+				type : "get",
+				data : {t1 : "Hello", t2 : "World"},
+				success : function (data) {
+					alert(data);
+				},
+				error : function (data) {
+					alert(data);
+				}
+			});
+			*/
 			
 			// 폼 내부의 데이터를 전송할 주소
 			document.form1.action = "${path}/login_Admin/login"

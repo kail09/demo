@@ -1,11 +1,10 @@
-package com.kail.demo;
+package com.kail.demo.common;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,7 +23,10 @@ public class JspController {
 	boolean result = true;
 	
 	@RequestMapping(value="/")      // localhost
-	public String main() {
+	public String main(HttpServletRequest req) {
+		
+		System.out.println("chk http data : " + req.toString());
+		
 		// 로그인 정보 여부 확인 
 		// 없을 경우 로그인 화면으로 리다이렉트 
 //		if (result) {
@@ -35,10 +37,11 @@ public class JspController {
 	}
 	
 	@RequestMapping(value="/login_Admin") 
-	public String login(HttpServletRequest req){ 
+	public String login(HttpServletRequest req, HttpSession session){ 
 		
-		HttpSession session = req.getSession();
-		log.debug("data chk : " + session.getAttribute("userId"));
+		HttpSession Reqsession = req.getSession();
+		System.out.println("data chk : " + req.toString());
+		System.out.println("data chk : " + Reqsession.toString());
 
 
 		if (result) {
@@ -63,11 +66,14 @@ public class JspController {
 		MemberModel vo = new MemberModel();
 		if (userName == null ) {
 			session.setAttribute("member", null);
+			return "redirect:/login_Admin";
 		} else {
 			vo.setUserName(userName);
 			session.setAttribute("member", vo);
+			return "redirect:/index_Admin";
 		}
-		return "redirect:/index_Admin";
+		
+//		return "forward:/index_Admin";
 //		if (result) {
 //			System.out.println("chk login admin1");
 //			return "/login_Admin";
@@ -78,8 +84,15 @@ public class JspController {
 	}
 	
 	@RequestMapping(value="/index_Admin") 
-	public String index(HttpSession session){ 
+	public String index(HttpServletRequest request, String res){ 
+		// 세션 값 리턴 및 값이 없을 경우 세션 생성 
 		
+		HttpSession Reqsession = request.getSession();
+		System.out.println("data chk : " + request.toString());
+		System.out.println("data chk : " + Reqsession.toString());
+		MemberModel name = (MemberModel) Reqsession.getAttribute("member");		
+		
+		System.out.println("name : "+ name.getUserName());
 //		if (!"".equals(session.getAttribute("userId"))) {
 //			result = false;
 //		}
