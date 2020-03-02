@@ -19,7 +19,7 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@GetMapping("/test")
+	@GetMapping("test")
 	public String test() {
 		
 		memberService.test();
@@ -47,7 +47,7 @@ public class MemberController {
 		return result;
 	}
 	
-	@GetMapping("/sqlTest")
+	@GetMapping("sqlTest")
 	public String mysqlTest() {
 		
 		memberService.mysqlTest();
