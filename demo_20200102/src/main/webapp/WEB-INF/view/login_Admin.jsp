@@ -50,26 +50,28 @@
 <body>
 <form name="form1" method="post" >
 	<div align="center">
-		<table style="width:200px"> 
+		<img src="/resources/img/admin/loginLogo.jpg" height="200px" style="padding-top: 120px;">
+		<h1>ADMIN LOGIN</h1>
+		<table style="width:300px; margin-top:15px;"> 
 			<tr> 
-				<td width=30% align=right>
-					ID
+				<td width="170px" align=left>
+					아이디
 				</td> 
-				<td width=70% align=left> 
-					<input type=text name=userId id="userId" size=15> 
+				<td width="200px" align=left> 
+					<input type="text" name="userId" id="userId" size="15"> 
 				</td> 
+				<td width="" rowspan="2" >
+					<input type="image" value="로그인" id="btn_login" src="/resources/img/admin/btn_login.gif"> 
+				</td>
 			</tr> 
 			<tr> 
-				<td width=30% align=right>
-					Password
+				<td width="170px" align=left>
+					비밀번호
 				</td> 
-				<td width=70% align=left> 
+				<td width="200px" align=left> 
 					<input type=password name=userPw id="userPw" size=15> 
 				</td> 
-			</tr> 
-			<tr> 
-				<td align=right colspan=2> 
-					<button type=button id="btn_login">로그인</button>
+				<td width="" >
 				</td>
 			</tr> 
 		</table> 
