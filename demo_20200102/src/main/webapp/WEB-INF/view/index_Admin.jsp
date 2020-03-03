@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 	String mode=request.getParameter("mode"); 
 	String jsp=""; 
@@ -34,13 +34,12 @@
 			<tr> 
 				<td colspan=2 style="width:100%; height:10px;">
 					<div style="float:right;">
-						<C:CATCH>
+						<c:catch>
 							<c:choose>
-								<c:when test="${member.userName != null }">
+								<c:when test="${member.userName == null }">
 									<p>
 										<a href="login">로그인</a>
 									</p>
-							<a href="#">회원가입</a> 
 								</c:when>
 								<c:otherwise>
 									<p>
@@ -48,7 +47,7 @@
 									</p>
 								</c:otherwise>
 							</c:choose>
-						</C:CATCH>
+						</c:catch>
 					</div>
 				</td> 
 			</tr> 
