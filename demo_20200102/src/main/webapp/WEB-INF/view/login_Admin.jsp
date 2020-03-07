@@ -42,40 +42,56 @@
 			document.form1.action = "${path}/login_Admin/login"
 			// 제출
 			document.form1.submit();
-			
 		});
+		
 	});
+	
+	function keyevent() {
+		var keyCode = event.keyCode;
+		console.log('event.keyCode : ' + event.keyCode);
+		
+		if (keyCode == 13) {
+			
+		}
+		
+	};
+	
+	
 </script>
 </head>
 <body>
 <form name="form1" method="post" >
 	<div align="center">
-		<img src="/resources/img/admin/loginLogo.jpg" height="200px" style="padding-top: 120px;">
-		<h1>ADMIN LOGIN</h1>
-		<table style="width:300px; margin-top:15px;"> 
-			<tr> 
-				<td width="170px" align=left>
-					아이디
-				</td> 
-				<td width="200px" align=left> 
-					<input type="text" name="userId" id="userId" size="15"> 
-				</td> 
-				<td width="" rowspan="2" >
-					<input type="image" value="로그인" id="btn_login" src="/resources/img/admin/btn_login.gif"> 
-				</td>
-			</tr> 
-			<tr> 
-				<td width="170px" align=left>
-					비밀번호
-				</td> 
-				<td width="200px" align=left> 
-					<input type=password name=userPw id="userPw" size=15> 
-				</td> 
-				<td width="" >
-				</td>
-			</tr> 
-		</table> 
-	</div> 
+		<div style="border: 1px solid gray; padding:20px; border-radius:0.5em; align:center; margin-top: 8%; width:400px;">
+			<img src="/resources/img/admin/loginLogo.jpg" height="200px" >
+			<h1>ADMIN LOGIN</h1>
+			<table style="width:200px; margin-top:15px;"> 
+				<tr> 
+					<td width="170px" align=left>
+						아이디
+					</td> 
+					<td width="200px" align=left> 
+						<input type="text" name="userId" id="userId" size="15"> 
+					</td>
+				</tr> 
+				<tr> 
+					<td width="170px" align=left>
+						비밀번호
+					</td> 
+					<td width="200px" align=left> 
+						<input type=password name=userPw id="userPw" size=15 onkeydown="javascript:keyevent(this);"> 
+					</td>
+	
+	
+				</tr> 
+				<tr>
+					<td width="" colspan="2" >
+						<input type="image" value="로그인" id="btn_login" src="/resources/img/admin/btn_login.png" style="width:190px; height:30px; margin-top:5px;"> 
+					</td>
+				</tr>
+			</table> 
+		</div> 
+	</div>
 </form>
 </body>
 </html>
