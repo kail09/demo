@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kail.demo.v1.member.model.MemberModel;
 import com.kail.demo.v1.member.service.MemberService;
@@ -82,6 +81,16 @@ public class JspController {
 		return resUrl;
 	}
 	
+	@RequestMapping(value="/login_Admin/logout")
+	public String logout(HttpServletRequest request) {
+		
+		String resUrl = "redirect:/login_Admin";
+		
+		request.getSession().removeAttribute("member");
+		
+		return resUrl;
+	}
+	
 	@RequestMapping(value="/index_Admin") 
 	public String index(HttpServletRequest request){ 
 		MemberModel memberModel = new MemberModel();
@@ -94,7 +103,7 @@ public class JspController {
 			memberModel = (MemberModel) session.getAttribute("member");		
 			resValue = memberModel.getUserName();
 		} catch (Exception e) {
-			log.error("Exception. Not Session ");
+			log.info("##### Exception. Not Select User ");
 		}
 		
 		if (StringUtils.isBlank(resValue)) {
