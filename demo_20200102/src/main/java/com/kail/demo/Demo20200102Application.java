@@ -6,15 +6,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-@ComponentScan(basePackages = "com.kail")
-@Configuration
-@EnableAutoConfiguration
+@SpringBootApplication(scanBasePackages = {"com.kail.demo", "com.kail.demoApi.v1"})
 public class Demo20200102Application {
 
 	public static void main(String[] args) {

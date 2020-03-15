@@ -7,6 +7,7 @@
 <meta charset="EUC-KR">
 <title>쇼핑</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/resources/js/admin/common.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#logoutBtn").on("click", function(e) {

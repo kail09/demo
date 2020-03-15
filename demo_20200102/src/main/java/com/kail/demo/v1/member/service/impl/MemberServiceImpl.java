@@ -1,6 +1,6 @@
 package com.kail.demo.v1.member.service.impl;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class MemberServiceImpl implements MemberService {
-	
 	@Autowired
 	MemberDao memberDao;
 	
