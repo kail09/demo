@@ -1,6 +1,6 @@
 package com.kail.demo.v1.member.service.impl;
 
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -22,7 +22,6 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;
 	
 	@Override
-//	@Transactional(propagation = Propagation.NESTED)
 	public void test() {
 		MemberModel memberModel = new MemberModel();
 		memberModel.setNum(2);
