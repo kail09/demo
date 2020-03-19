@@ -3,10 +3,10 @@
 <mapper namespace="com.kail.demo.v1.member.dao.MemberDao">
 
 	
-	<select id="test" resultType="java.lang.String" parameterType="MemberModel">
+	<select id="test" resultType="String" parameterType="String">
 		SELECT phone 
 		FROM demoDb.member 
-		WHERE num = #{num}
+		WHERE num = #{memberModel}
 	</select>
 	
 	<insert id="insertUserInfo" parameterType="MemberModel">

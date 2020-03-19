@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberModel memberModel = new MemberModel();
 		memberModel.setNum(2);
 		System.out.println("run chk ");
-		String a = memberDao.test(memberModel);
+		String a = memberDao.test("2");
 		System.out.println("mapper ok"+a);
 		log.debug("chk debug");
 		log.info("chk info ");
