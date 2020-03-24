@@ -25,6 +25,12 @@ spring:
       prefix: /WEB-INF/view/
       suffix: .jsp
     static-path-pattern: /resources/**
+    locale: ko_KR
+
+# i18n message
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
 
 # LOGGING
 # logging.level.${package}: ${TRACE,DEBUG...}

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kail.demo.v1.member.dao.MemberDao;
@@ -21,6 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@Override
 	public void test() {
 		MemberModel memberModel = new MemberModel();
@@ -30,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("mapper ok"+a);
 		log.debug("chk debug");
 		log.info("chk info ");
+		log.info(messageSource.getMessage("debug.test", null, LocaleContextHolder.getLocale()));
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.kail.demo;
 
+import java.util.Locale;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @SpringBootApplication(scanBasePackages = {"com.kail.demo", "com.kail.demoApi.v1"})
 public class Demo20200102Application {
@@ -32,4 +36,11 @@ public class Demo20200102Application {
 		return sqlSessionTemplate;
 	}
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+        // 해당 값을 수정하여 언어 결정
+        sessionLocaleResolver.setDefaultLocale(Locale.KOREAN);
+        return sessionLocaleResolver;
+    }
 }
