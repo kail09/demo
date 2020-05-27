@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kail.demo.v1.member.model.MemberModel;
 import com.kail.demo.v1.member.service.MemberService;
 
@@ -16,12 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j 
 @Controller
 public class JspController {
-	
+/*	
 	@Autowired
 	MemberService memberService;	
 	
 	boolean result = true;
-	
+	/*
 	@RequestMapping(value="/")      // localhost
 	public String main(HttpServletRequest req) {
 		
@@ -29,7 +31,7 @@ public class JspController {
 		// 로그인 정보 여부 확인 
 		// 없을 경우 로그인 화면으로 리다이렉트 
 //		if (result) {
-			return "redirect:/login_Admin";
+			return "/login_Admin";
 	}
 	
 	@RequestMapping(value="/login_Admin") 
@@ -49,7 +51,7 @@ public class JspController {
 			resValue = memberModel.getUserName();
 			
 			if (StringUtils.isNotBlank(resValue)) {
-				resUrl = "redirect:/index_Admin";
+				resUrl = "/index_Admin";
 			}
 		} catch (Exception e) {
 			resUrl = "/login_Admin";
@@ -73,24 +75,36 @@ public class JspController {
 		
 		if (StringUtils.isNotBlank(userName)) {
 			vo.setUserName(userName);
+			ObjectMapper mapper = new ObjectMapper();
+
+			String jsonStr = null;
+			try {
+				jsonStr = mapper.writeValueAsString(vo);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(jsonStr);
+
 			session.setAttribute("member", vo);
-			resUrl = "redirect:/index_Admin";
+			resUrl = "/index_Admin";
 		} else {
-			resUrl = "redirect:/login_Admin";
+			resUrl = "/login_Admin";
 		}
+		log.info("log : " + resUrl);
 		return resUrl;
 	}
 	
 	@RequestMapping(value="/login_Admin/logout")
 	public String logout(HttpServletRequest request) {
 		
-		String resUrl = "redirect:/login_Admin";
+		String resUrl = "/login_Admin";
 		
 		request.getSession().removeAttribute("member");
 		
 		return resUrl;
 	}
-	
+
 	@RequestMapping(value="/index_Admin") 
 	public String index(HttpServletRequest request){ 
 		MemberModel memberModel = new MemberModel();
@@ -107,10 +121,22 @@ public class JspController {
 		}
 		
 		if (StringUtils.isBlank(resValue)) {
-			resUrl = "redirect:/login_Admin";
+			resUrl = "/login_Admin";
 		} else {
 			resUrl = "/index_Admin";
 		}
 		return resUrl;
+	}*/
+	
+	@RequestMapping(value="/index_Admin") 
+	public String index(HttpServletRequest request){ 
+		return "/index_Admin";
 	}
+
+	@RequestMapping(value="/login_Admin") 
+	public String login(HttpServletRequest request){ 
+		return "/login_Admin";
+	}
+
 }
+

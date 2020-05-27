@@ -22,12 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Override
 	public void test() {
+
 		MemberModel memberModel = new MemberModel();
 		memberModel.setNum(2);
 		System.out.println("run chk ");
@@ -40,25 +41,24 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void insertUserInfo(MemberModel memberModel) throws Exception {
-		
+
 		// 기존 userId 조회
-		
 		long cntUserId = memberDao.countUserId(memberModel.getUserId());
 		if (cntUserId > 0) {
 			log.error("[ERROR-100] Exception : "+ "Duplicate userId");
 			throw new Exception();
 		}
-		
+
 		try {
 			memberDao.insertUserInfo(memberModel);
 		} catch (Exception e) {
 			log.error("[ERROR-101] Exception : " + e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public String loginUserInfo(MemberModel memberModel, HttpSession session) throws Exception {
-		
+
 		// 기존 userId 조회
 		try {
 			String userName = memberDao.loginUserInfo(memberModel);
@@ -70,47 +70,60 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return memberModel.getUserName();
 	}
-	
+
 	@Override
 	public void mysqlTest() {
-		
+
 		Connection conn = null;
 
 		try{
 			// 1) 드라이버 로딩
 			Class.forName("com.mysql.jdbc.Driver");
 
-			// 2) 연결하기
+			// 2) 연결 url 설정
 			String url = "jdbc:mysql://localhost/demoDb";		
 
+			// 3) 드라이버 연결
 			conn = DriverManager.getConnection(url, "root", "qwe123!@#");
-			System.out.println("연결 성공");
 
-        }
-        catch(ClassNotFoundException e){
-            System.out.println("드라이버 로딩 실패");
-        }
-        catch(SQLException e){
-            System.out.println("에러: " + e);
-        }
-        finally{
-            try{
-                if( conn != null && !conn.isClosed()){
-                    conn.close();
-                }
-            }
-            catch( SQLException e){
-                e.printStackTrace();
-            }
-        }
+			// 4) 드라이버 연결 성공시 콘솔 문구표시
+			System.out.println("연결 성공");
+		}
+		catch(ClassNotFoundException e){
+
+			// 5) 드라이버 연결 미성공시 콘솔 문구표시
+			System.out.println("드라이버 로딩 실패");
+		}
+		catch(SQLException e){
+
+			// 6) 드라이버 연결 미성공인 이유 문구표
+			System.out.println("에러: " + e);
+		}
+		finally{
+
+			try{
+				// 7) 드라이버 연결 닫
+				if( conn != null && !conn.isClosed()){
+					conn.close();
+				}
+			}
+			catch( SQLException e){
+
+				e.printStackTrace();
+			}
+		}
 	}
-	
+
 	@Override
 	public String loginUserInfo(MemberModel memberModel) {
+
 		String userName = memberDao.loginUserInfo(memberModel);
+
 		System.out.println("chk memberserviceimpl data :  "+ memberModel.getUserId());
 		System.out.println("chk memberserviceimpl data userNm :  "+ userName);
+
 		log.debug("data : " + memberModel.getUserId() ); 
+
 		return userName;
 	}
 }

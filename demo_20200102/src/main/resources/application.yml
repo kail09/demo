@@ -24,7 +24,7 @@ spring:
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
-    static-path-pattern: /resources/**
+    static-path-pattern: /**
     locale: ko_KR
 
 # i18n message

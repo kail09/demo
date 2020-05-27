@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <title>쇼핑</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/ui/js/admin/common.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btn_login").click(function(){
+			var link = window.location.protocol + "//" + window.location.host;
 			var userId = $("#userId").val();
 			var userPw = $("#userPw").val();
 			
@@ -23,25 +25,29 @@
 				$("#userPw").focus();
 				return;
 			}
+			//formSubmit();
 			
-			/*
 			$.ajax({
-				url : "test.jsp",
-				type : "get",
-				data : {t1 : "Hello", t2 : "World"},
-				success : function (data) {
-					alert(data);
-				},
-				error : function (data) {
-					alert(data);
-				}
+				url : link+"/api/member/login",
+				type : "POST",
+				data : {userId : "hong99i", userPw : "frhu78"}
+				dataType: "json"
+			})
+			// HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+			.done(function(json) {
+				alert("chk run : "+ JSON.stringify(json));
+				
+				//location.href="/ui/index_Admin?userId="+json.userId+"&userName="+encodeURI(encodeURIComponent(json.userName));
 			});
-			*/
 			
 			// 폼 내부의 데이터를 전송할 주소
-			document.form1.action = "${path}/login_Admin/login"
-			// 제출
-			document.form1.submit();
+//			document.form1.action = "${apiGw}/member/login"
+ /*			var frm = document.form1;
+			
+			frm.action=link+"/api/member/login";
+			frm.method="POST";
+			frm.commandName="memberModel";
+			frm.submit();  */
 		});
 		
 	});
@@ -54,16 +60,21 @@
 			
 		}
 		
-	};
+	}
+	
+	function formSubmit() {
+
+	}
 	
 	
 </script>
 </head>
 <body>
-<form name="form1" method="post" >
+<form name="form1">
 	<div align="center">
+		<input type="hidden" id="" name="userName" value="${userName}">
 		<div style="border: 1px solid gray; padding:20px; border-radius:0.5em; align:center; margin-top: 8%; width:400px;">
-			<img src="/resources/img/admin/loginLogo.jpg" height="200px" >
+			<img src="/ui/img/admin/loginLogo.jpg" height="200px" >
 			<h1>ADMIN LOGIN</h1>
 			<table style="width:200px; margin-top:15px;"> 
 				<tr> 
@@ -86,7 +97,7 @@
 				</tr> 
 				<tr>
 					<td width="" colspan="2" >
-						<input type="image" value="로그인" id="btn_login" src="/resources/img/admin/btn_login.png" style="width:190px; height:30px; margin-top:5px;"> 
+						<input type="image" value="로그인" id="btn_login" src="/ui/img/admin/btn_login.png" style="width:190px; height:30px; margin-top:5px;"> 
 					</td>
 				</tr>
 			</table> 
